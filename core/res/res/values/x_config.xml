@@ -197,6 +197,9 @@
     <!-- Shows the required view for in-display fingerprint -->
     <bool name="config_supportsInDisplayFingerprint">false</bool>
 
+    <!-- Whether device supports in-display fingerprint when screen is turned off -->
+    <bool name="config_supportsScreenOffInDisplayFingerprint">false</bool>
+
     <!-- Default fod pressed color -->
     <integer name="config_fod_pressed_color">1</integer>
 
