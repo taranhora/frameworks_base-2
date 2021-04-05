@@ -203,7 +203,7 @@ public class FODCircleView extends ImageView {
         public void onKeyguardVisibilityChanged(boolean showing) {
             mIsKeyguard = showing;
             updateStyle();
-            if (mIsFodAnimationAvailable && mFODAnimation != null) {
+            if (mIsRecognizingAnimEnabled) {
                 mFODAnimation.setAnimationKeyguard(mIsKeyguard);
             }
 
@@ -226,7 +226,7 @@ public class FODCircleView extends ImageView {
             } else {
                 hide();
             }
-            if (mIsFodAnimationAvailable && mFODAnimation != null) {
+            if (mIsRecognizingAnimEnabled) {
                 mFODAnimation.setAnimationKeyguard(mIsBouncer);
             }
         }
@@ -496,9 +496,6 @@ public class FODCircleView extends ImageView {
             return true;
         }
 
-        if (mIsFodAnimationAvailable) {
-            mHandler.post(() -> mFODAnimation.hideFODanimation());
-        }
         return false;
     }
 
@@ -570,12 +567,11 @@ public class FODCircleView extends ImageView {
         setDim(true);
         dispatchPress();
 
-        if (mIsFodAnimationAvailable) {
-            mHandler.post(() -> mFODAnimation.showFODanimation());
-        }
-
         setImageDrawable(null);
         invalidate();
+        if (mIsRecognizingAnimEnabled) {
+            mFODAnimation.showFODanimation();
+        }
     }
 
     public void hideCircle() {
@@ -586,11 +582,10 @@ public class FODCircleView extends ImageView {
         dispatchRelease();
         setDim(false);
 
-        if (mIsFodAnimationAvailable) {
-            mHandler.post(() -> mFODAnimation.hideFODanimation());
-        }
-
         setKeepScreenOn(false);
+        if (mIsRecognizingAnimEnabled) {
+            mFODAnimation.hideFODanimation();
+        }
     }
 
     public void show() {
@@ -682,7 +677,7 @@ public class FODCircleView extends ImageView {
         if (mIsDreaming) {
             mParams.x += mDreamingOffsetX;
             mParams.y += mDreamingOffsetY;
-            if (mIsFodAnimationAvailable) {
+            if (mIsRecognizingAnimEnabled) {
                 mFODAnimation.updateParams(mParams.y);
             }
         }
