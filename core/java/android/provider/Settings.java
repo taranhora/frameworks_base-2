@@ -6191,7 +6191,7 @@ public final class Settings {
          * @hide
          */
         public static final String FOD_COLOR = "fod_color";
-        
+
         /**
          * FOD night light
          * @hide
@@ -6489,6 +6489,12 @@ public final class Settings {
          * @hide
          */
         public static final String FOD_GESTURE = "fod_gesture";
+
+        /**
+         * FOD icon animation
+         * @hide
+         */
+        public static final String FOD_ICON_ANIMATION = "fod_icon_animation";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to
